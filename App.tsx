@@ -2,6 +2,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Provider } from 'react-redux';
 import { store } from './src/utils/store';
+import { theme } from './src/utils/theme';
 import React from 'react';
 
 // Import screens
@@ -22,14 +23,14 @@ const App = () => {
     <Provider store={store}>
       <NavigationContainer
         theme={{
-          dark: true,
+          dark: false,
           colors: {
-            primary: '#BB86FC',
-            background: '#121212',
-            card: '#121212',
-            text: '#FFFFFF',
-            border: '#333',
-            notification: '#BB86FC',
+            primary: theme.colors.primary,
+            background: theme.colors.background,
+            card: theme.colors.card,
+            text: theme.colors.text,
+            border: theme.colors.border,
+            notification: theme.colors.primary,
           },
           fonts: {
             regular: {
@@ -54,7 +55,7 @@ const App = () => {
         <Stack.Navigator
           screenOptions={{
             headerShown: false,
-            contentStyle: { backgroundColor: '#121212' },
+            contentStyle: { backgroundColor: theme.colors.background },
             animation: 'slide_from_right',
           }}
         >
