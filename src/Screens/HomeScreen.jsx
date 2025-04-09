@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { removePokemon } from '../utils/pokemonSlice';
+import { theme } from '../utils/theme';
 
 const HomeScreen = () => {
   const pokemons = useSelector((state) => state.pokemon.pokemons);
@@ -20,6 +21,7 @@ const HomeScreen = () => {
 
   const renderItem = ({ item }) => (
     <View style={styles.card}>
+      
       <View style={styles.contentContainer}>
         <View style={styles.cardHeader}>
           <View style={styles.titleContainer}>
@@ -30,7 +32,7 @@ const HomeScreen = () => {
             style={styles.menuButton}
             onPress={() => handleEdit(item)}
           >
-            <Icon name="ellipsis-vertical" size={20} color="#BB86FC" />
+            <Icon name="ellipsis-vertical" size={20} color={theme.colors.primary} />
           </TouchableOpacity>
         </View>
         <Text style={styles.description} numberOfLines={2}>
@@ -73,7 +75,7 @@ const HomeScreen = () => {
       
       {pokemons.length === 0 ? (
         <View style={styles.emptyContainer}>
-          <Icon name="sad-outline" size={60} color="#BB86FC" />
+          <Icon name="sad-outline" size={60} color={theme.colors.primary} />
           <Text style={styles.emptyText}>No Pokémons Collected</Text>
           <Text style={styles.emptySubText}>Add your first Pokémon to start your collection!</Text>
         </View>
@@ -100,17 +102,17 @@ const HomeScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#121212',
+    backgroundColor: theme.colors.background,
   },
   header: {
-    padding: 20,
+    padding: theme.spacing.lg,
     borderBottomWidth: 1,
-    borderBottomColor: '#333',
+    borderBottomColor: theme.colors.border,
   },
   headerContent: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 16,
+    gap: theme.spacing.md,
   },
   profileContainer: {
     width: 60,
@@ -118,7 +120,7 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     overflow: 'hidden',
     borderWidth: 2,
-    borderColor: '#BB86FC',
+    borderColor: theme.colors.primary,
   },
   profileImage: {
     width: '100%',
@@ -129,40 +131,40 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   greeting: {
-    fontSize: 16,
-    color: '#A0A0A0',
-    marginBottom: 4,
+    fontSize: theme.typography.body.fontSize,
+    color: theme.colors.textSecondary,
+    marginBottom: theme.spacing.xs,
   },
   title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#BB86FC',
+    fontSize: theme.typography.h2.fontSize,
+    fontWeight: theme.typography.h2.fontWeight,
+    color: theme.colors.primary,
   },
   emptyContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 20,
+    padding: theme.spacing.lg,
   },
   emptyText: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#BB86FC',
-    marginTop: 20,
+    fontSize: theme.typography.h2.fontSize,
+    fontWeight: theme.typography.h2.fontWeight,
+    color: theme.colors.primary,
+    marginTop: theme.spacing.lg,
   },
   emptySubText: {
-    fontSize: 16,
-    color: '#A0A0A0',
+    fontSize: theme.typography.body.fontSize,
+    color: theme.colors.textSecondary,
     textAlign: 'center',
-    marginTop: 10,
+    marginTop: theme.spacing.sm,
   },
   list: {
-    padding: 16,
+    padding: theme.spacing.md,
   },
   card: {
-    backgroundColor: '#1E1E1E',
-    borderRadius: 16,
-    marginBottom: 16,
+    backgroundColor: theme.colors.card,
+    borderRadius: theme.borderRadius.lg,
+    marginBottom: theme.spacing.md,
     overflow: 'hidden',
     elevation: 4,
     shadowColor: '#000',
@@ -173,77 +175,77 @@ const styles = StyleSheet.create({
   imageContainer: {
     width: '100%',
     height: 200,
-    backgroundColor: '#2A2A2A',
+    backgroundColor: theme.colors.background,
   },
   imagePlaceholder: {
     width: '100%',
     height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#2A2A2A',
+    backgroundColor: theme.colors.background,
   },
   contentContainer: {
-    padding: 16,
+    padding: theme.spacing.md,
   },
   cardHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'flex-start',
-    marginBottom: 8,
+    marginBottom: theme.spacing.sm,
   },
   titleContainer: {
     flex: 1,
   },
   menuButton: {
-    padding: 4,
+    padding: theme.spacing.xs,
   },
   name: {
-    fontSize: 22,
-    fontWeight: 'bold',
-    color: '#BB86FC',
-    marginBottom: 4,
+    fontSize: theme.typography.h3.fontSize,
+    fontWeight: theme.typography.h3.fontWeight,
+    color: theme.colors.text,
+    marginBottom: theme.spacing.xs,
   },
   breed: {
-    fontSize: 16,
-    color: '#CFCFCF',
+    fontSize: theme.typography.body.fontSize,
+    color: theme.colors.textSecondary,
     opacity: 0.8,
   },
   description: {
-    fontSize: 15,
-    color: '#A0A0A0',
+    fontSize: theme.typography.body.fontSize,
+    color: theme.colors.textSecondary,
     lineHeight: 22,
-    marginBottom: 16,
+    marginBottom: theme.spacing.md,
   },
   cardActions: {
     flexDirection: 'row',
-    gap: 12,
+    gap: theme.spacing.sm,
   },
   actionButton: {
     flex: 1,
-    padding: 12,
-    borderRadius: 8,
+    padding: theme.spacing.sm,
+    borderRadius: theme.borderRadius.md,
     alignItems: 'center',
     justifyContent: 'center',
   },
   editButton: {
-    backgroundColor: '#BB86FC',
+    backgroundColor: theme.colors.primary,
   },
   deleteButton: {
-    backgroundColor: '#CF6679',
+    backgroundColor: theme.colors.error,
   },
   actionButtonText: {
     color: '#FFFFFF',
-    fontSize: 16,
+    fontSize: theme.typography.body.fontSize,
     fontWeight: '600',
   },
   fab: {
     position: 'absolute',
-    right: 16,
-    bottom: 16,
+    right: theme.spacing.md,
+    bottom: theme.spacing.md,
     width: 56,
     height: 56,
     borderRadius: 28,
-    backgroundColor: '#BB86FC',
+    backgroundColor: theme.colors.primary,
     justifyContent: 'center',
     alignItems: 'center',
     elevation: 4,
