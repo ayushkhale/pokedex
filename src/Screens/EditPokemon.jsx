@@ -127,6 +127,7 @@ const styles = StyleSheet.create({
     fontSize: theme.typography.h2.fontSize,
     fontWeight: theme.typography.h2.fontWeight,
     color: theme.colors.primary,
+    fontFamily: theme.typography.h2.fontFamily,
   },
   form: {
     padding: theme.spacing.lg,
@@ -138,6 +139,7 @@ const styles = StyleSheet.create({
     fontSize: theme.typography.body.fontSize,
     color: theme.colors.primary,
     marginBottom: theme.spacing.sm,
+    fontFamily: theme.typography.body.fontFamily,
   },
   input: {
     backgroundColor: theme.colors.card,
@@ -147,6 +149,7 @@ const styles = StyleSheet.create({
     fontSize: theme.typography.body.fontSize,
     borderWidth: 1,
     borderColor: theme.colors.border,
+    fontFamily: theme.typography.body.fontFamily,
   },
   textArea: {
     height: 120,
@@ -163,6 +166,7 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     fontSize: theme.typography.body.fontSize,
     fontWeight: 'bold',
+    fontFamily: theme.typography.body.fontFamily,
   },
 });
 
