@@ -1,6 +1,6 @@
 export const theme = {
   colors: {
-    primary: '#FFCB05', // Pokémon Yellow
+    primary: '#353160', // Updated primary color
     secondary: '#3B4CCA', // Pokémon Blue
     background: '#FFFFFF',
     card: '#F8F8F8',
