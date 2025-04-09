@@ -134,11 +134,13 @@ const styles = StyleSheet.create({
     fontSize: theme.typography.body.fontSize,
     color: theme.colors.textSecondary,
     marginBottom: theme.spacing.xs,
+    fontFamily: theme.typography.body.fontFamily,
   },
   title: {
     fontSize: theme.typography.h2.fontSize,
     fontWeight: theme.typography.h2.fontWeight,
     color: theme.colors.primary,
+    fontFamily: theme.typography.h2.fontFamily,
   },
   emptyContainer: {
     flex: 1,
@@ -151,12 +153,14 @@ const styles = StyleSheet.create({
     fontWeight: theme.typography.h2.fontWeight,
     color: theme.colors.primary,
     marginTop: theme.spacing.lg,
+    fontFamily: theme.typography.h2.fontFamily,
   },
   emptySubText: {
     fontSize: theme.typography.body.fontSize,
     color: theme.colors.textSecondary,
     textAlign: 'center',
     marginTop: theme.spacing.sm,
+    fontFamily: theme.typography.body.fontFamily,
   },
   list: {
     padding: theme.spacing.md,
@@ -204,17 +208,20 @@ const styles = StyleSheet.create({
     fontWeight: theme.typography.h3.fontWeight,
     color: theme.colors.text,
     marginBottom: theme.spacing.xs,
+    fontFamily: theme.typography.h3.fontFamily,
   },
   breed: {
     fontSize: theme.typography.body.fontSize,
     color: theme.colors.textSecondary,
     opacity: 0.8,
+    fontFamily: theme.typography.body.fontFamily,
   },
   description: {
     fontSize: theme.typography.body.fontSize,
     color: theme.colors.textSecondary,
     lineHeight: 22,
     marginBottom: theme.spacing.md,
+    fontFamily: theme.typography.body.fontFamily,
   },
   cardActions: {
     flexDirection: 'row',
@@ -237,6 +244,7 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     fontSize: theme.typography.body.fontSize,
     fontWeight: '600',
+    fontFamily: theme.typography.body.fontFamily,
   },
   fab: {
     position: 'absolute',
