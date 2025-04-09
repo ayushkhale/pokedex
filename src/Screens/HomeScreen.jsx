@@ -20,11 +20,6 @@ const HomeScreen = () => {
 
   const renderItem = ({ item }) => (
     <View style={styles.card}>
-      <View style={styles.imageContainer}>
-        <View style={styles.imagePlaceholder}>
-          <Icon name="image-outline" size={40} color="#666666" />
-        </View>
-      </View>
       <View style={styles.contentContainer}>
         <View style={styles.cardHeader}>
           <View style={styles.titleContainer}>
