@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { addPokemon } from '../utils/pokemonSlice';
+import { theme } from '../utils/theme';
 
 const AddPokemon = () => {
   const [name, setName] = useState('');
@@ -40,7 +41,7 @@ const AddPokemon = () => {
             style={styles.backButton}
             onPress={() => navigation.goBack()}
           >
-            <Icon name="arrow-back" size={24} color="#BB86FC" />
+            <Icon name="arrow-back" size={24} color={theme.colors.primary} />
           </TouchableOpacity>
           <Text style={styles.title}>Add New Pokémon</Text>
         </View>
@@ -53,7 +54,7 @@ const AddPokemon = () => {
               value={name}
               onChangeText={setName}
               placeholder="Enter Pokémon name"
-              placeholderTextColor="#666666"
+              placeholderTextColor={theme.colors.textSecondary}
             />
           </View>
 
@@ -64,7 +65,7 @@ const AddPokemon = () => {
               value={breed}
               onChangeText={setBreed}
               placeholder="Enter Pokémon breed"
-              placeholderTextColor="#666666"
+              placeholderTextColor={theme.colors.textSecondary}
             />
           </View>
 
@@ -75,7 +76,7 @@ const AddPokemon = () => {
               value={description}
               onChangeText={setDescription}
               placeholder="Enter Pokémon description"
-              placeholderTextColor="#666666"
+              placeholderTextColor={theme.colors.textSecondary}
               multiline
               numberOfLines={4}
               textAlignVertical="top"
@@ -97,7 +98,7 @@ const AddPokemon = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#121212',
+    backgroundColor: theme.colors.background,
   },
   scrollContent: {
     flexGrow: 1,
@@ -105,52 +106,52 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     alignItems: 'center',
-    padding: 20,
+    padding: theme.spacing.lg,
     borderBottomWidth: 1,
-    borderBottomColor: '#333',
+    borderBottomColor: theme.colors.border,
   },
   backButton: {
-    marginRight: 16,
+    marginRight: theme.spacing.md,
   },
   title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#BB86FC',
+    fontSize: theme.typography.h2.fontSize,
+    fontWeight: theme.typography.h2.fontWeight,
+    color: theme.colors.primary,
   },
   form: {
-    padding: 20,
+    padding: theme.spacing.lg,
   },
   inputContainer: {
-    marginBottom: 20,
+    marginBottom: theme.spacing.lg,
   },
   label: {
-    fontSize: 16,
-    color: '#BB86FC',
-    marginBottom: 8,
+    fontSize: theme.typography.body.fontSize,
+    color: theme.colors.primary,
+    marginBottom: theme.spacing.sm,
   },
   input: {
-    backgroundColor: '#1E1E1E',
-    borderRadius: 8,
-    padding: 12,
-    color: '#FFFFFF',
-    fontSize: 16,
+    backgroundColor: theme.colors.card,
+    borderRadius: theme.borderRadius.md,
+    padding: theme.spacing.md,
+    color: theme.colors.text,
+    fontSize: theme.typography.body.fontSize,
     borderWidth: 1,
-    borderColor: '#333',
+    borderColor: theme.colors.border,
   },
   textArea: {
     height: 120,
     textAlignVertical: 'top',
   },
   addButton: {
-    backgroundColor: '#BB86FC',
-    borderRadius: 8,
-    padding: 16,
+    backgroundColor: theme.colors.primary,
+    borderRadius: theme.borderRadius.md,
+    padding: theme.spacing.md,
     alignItems: 'center',
-    marginTop: 20,
+    marginTop: theme.spacing.lg,
   },
   addButtonText: {
     color: '#FFFFFF',
-    fontSize: 16,
+    fontSize: theme.typography.body.fontSize,
     fontWeight: 'bold',
   },
 });
