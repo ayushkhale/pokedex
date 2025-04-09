@@ -48,20 +48,25 @@ export const theme = {
     h1: {
       fontSize: 32,
       fontWeight: 'bold',
+      fontFamily: 'Jersey15',
     },
     h2: {
       fontSize: 24,
       fontWeight: 'bold',
+      fontFamily: 'Jersey15',
     },
     h3: {
       fontSize: 20,
       fontWeight: 'bold',
+      fontFamily: 'Jersey15',
     },
     body: {
       fontSize: 16,
+      fontFamily: 'Jersey15',
     },
     caption: {
       fontSize: 14,
+      fontFamily: 'Jersey15',
     },
   },
 }; 
