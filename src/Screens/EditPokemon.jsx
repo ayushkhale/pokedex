@@ -1,9 +1,10 @@
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
 import { useDispatch } from 'react-redux';
-import { editPokemon } from '../utils/pokemonSlice';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { editPokemon } from '../utils/pokemonSlice';
+import { theme } from '../utils/theme';
 
 const EditPokemon = () => {
   const [name, setName] = useState('');
@@ -18,17 +19,17 @@ const EditPokemon = () => {
     if (pokemon) {
       setName(pokemon.name);
       setBreed(pokemon.breed);
-      setDescription(pokemon.description);
+      setDescription(pokemon.description || '');
     }
   }, [pokemon]);
 
   const handleSave = () => {
-    if (name && breed && description) {
+    if (name && breed) {
       const updatedPokemon = {
         ...pokemon,
         name,
         breed,
-        description
+        description,
       };
       dispatch(editPokemon(updatedPokemon));
       navigation.goBack();
@@ -36,100 +37,133 @@ const EditPokemon = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <TouchableOpacity 
-          style={styles.backButton}
-          onPress={() => navigation.goBack()}
-        >
-          <Icon name="arrow-back" size={24} color="#BB86FC" />
-        </TouchableOpacity>
-        <Text style={styles.title}>Edit Pokémon</Text>
-      </View>
+    <KeyboardAvoidingView
+      style={styles.container}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 20}
+    >
+      <ScrollView 
+        contentContainerStyle={styles.scrollContent}
+        keyboardShouldPersistTaps="handled"
+      >
+        <View style={styles.header}>
+          <TouchableOpacity
+            style={styles.backButton}
+            onPress={() => navigation.goBack()}
+          >
+            <Icon name="arrow-back" size={24} color={theme.colors.primary} />
+          </TouchableOpacity>
+          <Text style={styles.title}>Edit Pokémon</Text>
+        </View>
 
-      <View style={styles.form}>
-        <TextInput
-          style={styles.input}
-          placeholder="Pokémon Name"
-          placeholderTextColor="#666"
-          value={name}
-          onChangeText={setName}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Breed"
-          placeholderTextColor="#666"
-          value={breed}
-          onChangeText={setBreed}
-        />
-        <TextInput
-          style={[styles.input, styles.descriptionInput]}
-          placeholder="Description"
-          placeholderTextColor="#666"
-          value={description}
-          onChangeText={setDescription}
-          multiline
-        />
-        <TouchableOpacity 
-          style={styles.saveButton}
-          onPress={handleSave}
-        >
-          <Text style={styles.buttonText}>Save Changes</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
+        <View style={styles.form}>
+          <View style={styles.inputContainer}>
+            <Text style={styles.label}>Name</Text>
+            <TextInput
+              style={styles.input}
+              value={name}
+              onChangeText={setName}
+              placeholder="Enter Pokémon name"
+              placeholderTextColor={theme.colors.textSecondary}
+            />
+          </View>
+
+          <View style={styles.inputContainer}>
+            <Text style={styles.label}>Breed</Text>
+            <TextInput
+              style={styles.input}
+              value={breed}
+              onChangeText={setBreed}
+              placeholder="Enter Pokémon breed"
+              placeholderTextColor={theme.colors.textSecondary}
+            />
+          </View>
+
+          <View style={styles.inputContainer}>
+            <Text style={styles.label}>Description</Text>
+            <TextInput
+              style={[styles.input, styles.textArea]}
+              value={description}
+              onChangeText={setDescription}
+              placeholder="Enter Pokémon description"
+              placeholderTextColor={theme.colors.textSecondary}
+              multiline
+              numberOfLines={4}
+              textAlignVertical="top"
+            />
+          </View>
+
+          <TouchableOpacity
+            style={styles.saveButton}
+            onPress={handleSave}
+          >
+            <Text style={styles.saveButtonText}>Save Changes</Text>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#121212'
+    backgroundColor: theme.colors.background,
+  },
+  scrollContent: {
+    flexGrow: 1,
   },
   header: {
     flexDirection: 'row',
     alignItems: 'center',
-    padding: 16,
+    padding: theme.spacing.lg,
     borderBottomWidth: 1,
-    borderBottomColor: '#333'
+    borderBottomColor: theme.colors.border,
   },
   backButton: {
-    marginRight: 16
+    marginRight: theme.spacing.md,
   },
   title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#BB86FC'
+    fontSize: theme.typography.h2.fontSize,
+    fontWeight: theme.typography.h2.fontWeight,
+    color: theme.colors.primary,
   },
   form: {
-    padding: 16
+    padding: theme.spacing.lg,
+  },
+  inputContainer: {
+    marginBottom: theme.spacing.lg,
+  },
+  label: {
+    fontSize: theme.typography.body.fontSize,
+    color: theme.colors.primary,
+    marginBottom: theme.spacing.sm,
   },
   input: {
-    backgroundColor: '#1E1E1E',
-    padding: 16,
-    borderRadius: 8,
-    marginBottom: 16,
-    fontSize: 16,
-    color: '#FFFFFF',
+    backgroundColor: theme.colors.card,
+    borderRadius: theme.borderRadius.md,
+    padding: theme.spacing.md,
+    color: theme.colors.text,
+    fontSize: theme.typography.body.fontSize,
     borderWidth: 1,
-    borderColor: '#333'
+    borderColor: theme.colors.border,
   },
-  descriptionInput: {
+  textArea: {
     height: 120,
-    textAlignVertical: 'top'
+    textAlignVertical: 'top',
   },
   saveButton: {
-    backgroundColor: '#BB86FC',
-    padding: 16,
-    borderRadius: 8,
-    marginTop: 16,
-    alignItems: 'center'
+    backgroundColor: theme.colors.primary,
+    borderRadius: theme.borderRadius.md,
+    padding: theme.spacing.md,
+    alignItems: 'center',
+    marginTop: theme.spacing.lg,
   },
-  buttonText: {
+  saveButtonText: {
     color: '#FFFFFF',
-    fontSize: 16,
-    fontWeight: 'bold'
-  }
+    fontSize: theme.typography.body.fontSize,
+    fontWeight: 'bold',
+  },
 });
 
 export default EditPokemon; 
